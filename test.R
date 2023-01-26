@@ -2,7 +2,7 @@ library(tidyverse)
 library(svMisc) # for the progress bar
 library(magrittr) # for the %<>% 
 
-setwd("~/OneDrive - Imperial College London/Projects/OUTBREAKER2/GROUP")
+#setwd("~/OneDrive - Imperial College London/Projects/OUTBREAKER2/GROUP")
 
 source("simulate.R")
 source("generate_clusters.R")
@@ -34,6 +34,9 @@ View(sim$stats)
 
 
 
+#note plotly animation is weird
+#not sure the points are travelling correctly
+#gganimate seems beetter, code below.
 library(plotly)
 Noax <- list(
   title = "",

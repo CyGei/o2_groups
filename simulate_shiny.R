@@ -45,7 +45,7 @@ simulate <- function(groups_df, intro_group, duration) {
     shinyWidgets::updateProgressBar(
       id = "sim_progress",
       value = i, total = duration,
-      title = paste("Process", trunc(i/10))
+      title = paste("Simulating...")
     )
     
     # New day starting

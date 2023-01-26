@@ -3,6 +3,8 @@ library(shinythemes)
 library(plotly)
 library(tidyverse) # for dplyr functions
 library(magrittr) # for the %<>% (looks cool)
+linebreaks <- function(n){HTML(strrep(br(), n))}
+
 
 ui <- fluidPage(
   theme = shinytheme('slate'),
@@ -46,17 +48,25 @@ ui <- fluidPage(
       downloadButton('downloadData', 'Download Data'),
       downloadButton('downloadStats', 'Download Stats')
     ),
-    mainPanel(plotlyOutput("animation", height = "80vh"))
+    mainPanel(linebreaks(2),
+              plotlyOutput("animation", height = "80vh"))
   ),
   
   # Description
-  fluidRow(
-    column(
-      width = 4,
-      h4("Description of the simulation"),
-      verbatimTextOutput("description")
-    )
-  )
+  #   markdown(
+  #     "This app simulates the spread of an infection within and between groups over a specified number of days. The function takes the following inputs
+  #
+  # -   **`name`**: the groups' name.
+  # -   **`n`**: the group's sizes.
+  # -   **`lambda`**: the within group contact rate measured as the average number of contacts per individual.
+  # -   **`p_transmission`**: within-group transmission probability.
+  # -    **`move_to`**: between group movement allocation .
+  # -   **`move_prob`**: movement probability.
+  # -   **`intro_group`**: the name of the group where the initial infected individual is introduced.
+  # -   **`duration`**: the number of days for which the simulation runs."
+  #   )
+  
+  
   
 )
 
@@ -118,9 +128,9 @@ server <- function(input, output) {
                       color = "white",
                       width = 1)),
                   hoverinfo = "text",
-                  text = paste("Group:", sim()$group, "<br>",
-                               "ID:", sim()$id, "<br>",
-                               "Contacts:", sim()$contacts,"<br>")
+                  text = paste("Group:", sim()$data$group, "<br>",
+                               "ID:", sim()$data$id, "<br>",
+                               "Contacts:", sim()$data$contacts,"<br>")
       ) %>% 
       plotly::layout(showlegend = F,
                      title='Simulation',
@@ -129,7 +139,7 @@ server <- function(input, output) {
                      plot_bgcolor='#2d3436',
                      paper_bgcolor = '#2d3436',
                      font = list(color = '#ffffff')) %>% 
-      animation_opts(1000, redraw = FALSE)
+      animation_opts(1000, redraw = TRUE)
   })
   
   
