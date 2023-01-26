@@ -3,8 +3,9 @@ library(shinythemes)
 library(plotly)
 library(tidyverse) # for dplyr functions
 library(magrittr) # for the %<>% (looks cool)
+library(here) # to source helpers
 linebreaks <- function(n){HTML(strrep(br(), n))}
-
+setwd(here::here())
 
 ui <- fluidPage(
   theme = shinytheme('slate'),

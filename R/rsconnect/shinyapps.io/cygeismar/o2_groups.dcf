@@ -1,0 +1,14 @@
+name: o2_groups
+title: o2_groups
+username:
+account: cygeismar
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8138288
+bundleId: 6777776
+url: https://cygeismar.shinyapps.io/o2_groups/
+when: 1674752636.42942
+lastSyncTime: 1674752636.42942
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: simulate.R|test.R
